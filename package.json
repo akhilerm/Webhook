@@ -1,0 +1,14 @@
+{
+  "name": "webhook",
+  "version": "1.0.0",
+  "description": "To download latest changes in master branch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akhil Mohan",
+  "license": "ISC",
+  "dependencies": {
+    "node-github-webhook": "^1.0.7"
+  }
+}

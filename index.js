@@ -1,4 +1,5 @@
 require('dotenv').config()
+var shell = require('shelljs')
 var http = require('http')
 var createHandler = require('node-github-webhook')
 var handler = createHandler([ // multiple handlers
@@ -28,7 +29,9 @@ handler.on('push', function (event) {
       console.log("git pull origin master")
       break
     case '/hook/personal':
-      // do sth about webhook2
+      if(shell.exec('scripts/personal.sh').code !== 0) {
+      	console.log('Script execution failed')
+      }
       break
     default:
       // do sth else or nothing

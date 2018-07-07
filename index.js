@@ -2,8 +2,8 @@ require('dotenv').config()
 var http = require('http')
 var createHandler = require('node-github-webhook')
 var handler = createHandler([ // multiple handlers
-  { path: '/config', secret: process.env.CONFIG_SECRET },
-  { path: '/webhook2', secret: 'secret2' }
+  { path: '/hook/config', secret: process.env.CONFIG_SECRET },
+  { path: '/hook/personal', secret: process.env.PERSONAL_SECRET }
 ])
  
 http.createServer(function (req, res) {
@@ -24,10 +24,10 @@ handler.on('push', function (event) {
     event.payload.ref
   )
   switch(event.path) {
-    case '/config':
+    case '/hook/config':
       console.log("git pull origin master")
       break
-    case '/webhook2':
+    case '/hook/personal':
       // do sth about webhook2
       break
     default:

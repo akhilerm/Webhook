@@ -71,3 +71,6 @@ typings/
 
 # Serverless directories
 .serverless
+
+#Scripts directory
+scripts/

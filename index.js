@@ -4,7 +4,8 @@ var http = require('http')
 var createHandler = require('node-github-webhook')
 var handler = createHandler([ // multiple handlers
   { path: '/hook/config', secret: process.env.CONFIG_SECRET },
-  { path: '/hook/personal', secret: process.env.PERSONAL_SECRET }
+  { path: '/hook/personal', secret: process.env.PERSONAL_SECRET },
+  { path: '/hook/test', secret: process.env.TEST_SECRET }
 ])
  
 http.createServer(function (req, res) {
@@ -32,6 +33,9 @@ handler.on('push', function (event) {
       if(shell.exec('scripts/personal.sh').code !== 0) {
       	console.log('Script execution failed')
       }
+      break
+    case '/hook/test':
+      console.log("Received Test webhook")
       break
     default:
       // do sth else or nothing
